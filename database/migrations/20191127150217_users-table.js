@@ -4,41 +4,21 @@ exports.up = function(knex) {
 
     .createTable("guides", tbl => {
       tbl.increments();
-      tbl
-        .string("firstName", 128)
-        .notNullable();
-      tbl
-        .string("lastName", 128)
-        .notNullable();
-      tbl
-      .string("email", 128)
-      .notNullable()
-      .unique();
-
-      tbl.string("password", 128)
-        .notNullable();
+      tbl.string("firstName", 128).notNullable();
+      tbl.string("lastName", 128).notNullable();
+      tbl.string("email", 128).notNullable().unique();
+      tbl.string("password", 128).notNullable();
     })
     .createTable("tourists", tbl => {
       tbl.increments();
-      tbl
-        .string("firstName", 128)
-        .notNullable();
-      tbl
-        .string("lastName", 128)
-        .notNullable();
-      tbl
-      .string("email", 128)
-      .notNullable()
-      .unique();
-
-      tbl.string("password", 128)
-        .notNullable();
+      tbl.string("firstName", 128).notNullable();
+      tbl.string("lastName", 128).notNullable();
+      tbl.string("email", 128).notNullable().unique();
+      tbl.string("password", 128).notNullable();
     })
     .createTable("trips", tbl => {
       tbl.increments();
-
       tbl.string("tourName", 128).notNullable();
-
       tbl.string("description", 255).notNullable();
       tbl.string("price", 128).notNullable();
       tbl.string("duration", 128).notNullable();
@@ -59,7 +39,6 @@ exports.up = function(knex) {
     })
     .createTable("guide_trips", tbl => {
       tbl.increments();
-      tbl.boolean("guide_trips").defaultTo(false);
       tbl
         .integer("guide_id")
         .unsigned()
@@ -72,7 +51,15 @@ exports.up = function(knex) {
         .notNullable()
         .references("id")
         .inTable("tourists");
+      tbl
+        .integer("trip_id")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("trips");
     });
+
+
 };
 
 exports.down = function(knex) {
