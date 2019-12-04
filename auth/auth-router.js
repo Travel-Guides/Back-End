@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 
 const { validateUser } = require("./validate-user.js");
 
+// ***** GUIDES ***** //
+
 router.post("/guides/register", (req, res) => {
   let user = req.body;
   const validateResult = validateUser(user);
@@ -15,3 +17,5 @@ router.post("/guides/register", (req, res) => {
     console.log(user);
   }
 });
+
+// ***** TOURISTS ***** //

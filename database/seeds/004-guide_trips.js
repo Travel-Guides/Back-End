@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex("table_name")
+  return knex("guide_trips")
     .del()
     .then(function() {
       // Inserts seed entries
