@@ -1,19 +1,24 @@
-
-exports.up = function(knex) {
+exports.up = async function(knex) {
   await knex.schema
 
     .createTable("guides", tbl => {
       tbl.increments();
       tbl.string("firstName", 128).notNullable();
       tbl.string("lastName", 128).notNullable();
-      tbl.string("email", 128).notNullable().unique();
+      tbl
+        .string("email", 128)
+        .notNullable()
+        .unique();
       tbl.string("password", 128).notNullable();
     })
     .createTable("tourists", tbl => {
       tbl.increments();
       tbl.string("firstName", 128).notNullable();
       tbl.string("lastName", 128).notNullable();
-      tbl.string("email", 128).notNullable().unique();
+      tbl
+        .string("email", 128)
+        .notNullable()
+        .unique();
       tbl.string("password", 128).notNullable();
     })
     .createTable("trips", tbl => {
@@ -58,14 +63,12 @@ exports.up = function(knex) {
         .references("id")
         .inTable("trips");
     });
-
-
 };
 
 exports.down = function(knex) {
   return knex.schema
-  .dropTableIfExists("guide_trips")
-  .dropTableIfExists("trips")
-  .dropTableIfExists("tourists")
-  .dropTableIfExists("guides");
+    .dropTableIfExists("guide_trips")
+    .dropTableIfExists("trips")
+    .dropTableIfExists("tourists")
+    .dropTableIfExists("guides");
 };
