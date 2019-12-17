@@ -43,12 +43,13 @@ router.get("/guides/:id/trips", authenticate, (req, res) => {
     });
 });
 
-router.post("/guides/:id/trips", authenticate, (req, res) => {
-  const { id } = req.params;
+// router.post("/guides/:id/trips", authenticate, (req, res) => {
+//   const { id } = req.params;
 
-  Trips.addTripsByGuideId(req.body, id)
-    .then(trips => res.status(200).json(trips))
-    .catch(err => res.status(500).json({ message: err.message }));
-});
+//   console.log(id);
+//   Trips.addTripsByGuideId(req.body, id)
+//     .then(trips => res.status(200).json(trips))
+//     .catch(err => res.status(500).json({ message: err.message }));
+// });
 
 module.exports = router;

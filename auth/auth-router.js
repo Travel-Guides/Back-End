@@ -24,7 +24,45 @@ router.post("/guides/register", (req, res) => {
     const hash = bcrypt.hashSync(user.password, 10);
     user.password = hash;
     console.log(user);
+
+    Guides.add(user)
+      .then(saved => {
+        console.log("add result", saved);
+        res.status(201).json(saved);
+      })
+      .catch(error => {
+        res.status(500).json({ message: error.message });
+      });
+  } else {
+    res.status(400).json({
+      message: "Invalid user input, see errors for details",
+      error: validateResult.errors
+    });
   }
 });
 
+router.post("/guides/login", (req, res) => {
+  let { username, password } = req.body;
+
+  Guides.findBy({ username })
+    .first()
+    .then(guide => {
+      if (guide && bcrypt.compareSync(password, guide.password)) {
+        const token = guidesToken(guide.username);
+
+        res.status(200).json({
+          subject: `Hello ${guide.username}, here's a token.`,
+          token
+        });
+      } else {
+        res.status(401).json({ message: "Please provide correct credentials" });
+      }
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
+
 // ***** TOURISTS ***** //
+
+module.exports = router;
