@@ -6,8 +6,8 @@ module.exports = {
   findById,
   update,
   remove,
-  getTripsByGuideId,
-  addTripsByGuideId
+  getTripsByGuideId
+  // addTripsByGuideId
 };
 
 function find() {
@@ -60,10 +60,10 @@ function getTripsByGuideId(guide_id) {
     .where("t.guide_id", guide_id);
 }
 
-function addTripsByGuideId(guide_id) {
-  return db("trips as t")
-    .insert(guide_id, "id")
-    .join("users", "users.id", "t.guide_id")
-    .where("t.guide_id", guide_id)
-    .then(ids => ({ id: ids[0] }));
-}
+// function addTripsByGuideId(guide_id) {
+//   return db("trips as t")
+//     .insert(guide_id, "id")
+//     .join("guides", "guides.id", "t.guide_id")
+//     .where("t.guide_id", guide_id)
+//     .then(ids => ({ id: ids[0] }));
+// }

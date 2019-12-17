@@ -9,6 +9,10 @@ exports.up = async function(knex) {
         .string("email", 128)
         .notNullable()
         .unique();
+      tbl
+        .string("username", 128)
+        .notNullable()
+        .unique();
       tbl.string("password", 128).notNullable();
     })
     .createTable("tourists", tbl => {
@@ -17,6 +21,10 @@ exports.up = async function(knex) {
       tbl.string("lastName", 128).notNullable();
       tbl
         .string("email", 128)
+        .notNullable()
+        .unique();
+      tbl
+        .string("username", 128)
         .notNullable()
         .unique();
       tbl.string("password", 128).notNullable();

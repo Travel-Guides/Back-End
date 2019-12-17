@@ -16,6 +16,7 @@ function findBy(filter) {
 }
 
 function add(guide) {
+  console.log(guide);
   return db("guides")
     .insert(guide, "id")
     .then(ids => ({ id: ids[0] }));
