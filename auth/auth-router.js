@@ -101,7 +101,7 @@ router.post("/tourists/login", (req, res) => {
         const token = touristToken(tourist.username);
 
         res.status(200).json({
-          subject: `Hello ${guide.username}, here's a token.`,
+          subject: `Hello ${tourist.username}, here's a token.`,
           token
         });
       } else {
@@ -109,7 +109,7 @@ router.post("/tourists/login", (req, res) => {
       }
     })
     .catch(error => {
-      res.status(500).json(error);
+      res.status(500).json({ message: error.message });
     });
 });
 
