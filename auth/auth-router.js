@@ -65,4 +65,52 @@ router.post("/guides/login", (req, res) => {
 
 // ***** TOURISTS ***** //
 
+router.post("/tourists/register", (req, res) => {
+  let user = req.body;
+  const validateResult = validateUser(user);
+  console.log(validateResult);
+
+  if (validateResult.isSuccessful === true) {
+    const hash = bcrypt.hashSync(user.password, 10);
+    user.password = hash;
+    console.log(user);
+
+    Tourists.add(user)
+      .then(saved => {
+        console.log("add result", saved);
+        res.status(201).json(saved);
+      })
+      .catch(error => {
+        res.status(500).json({ message: error.message });
+      });
+  } else {
+    res.status(400).json({
+      message: "Invalid user input, see errors for details",
+      error: validateResult.errors
+    });
+  }
+});
+
+router.post("/tourists/login", (req, res) => {
+  let { username, password } = req.body;
+
+  Tourists.findBy({ username })
+    .first()
+    .then(tourist => {
+      if (tourist && bcrypt.compareSync(password, tourist.password)) {
+        const token = touristToken(tourist.username);
+
+        res.status(200).json({
+          subject: `Hello ${guide.username}, here's a token.`,
+          token
+        });
+      } else {
+        res.status(401).json({ message: "Please provide correct credentials" });
+      }
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
+
 module.exports = router;
