@@ -3,7 +3,8 @@ const cors = require("cors");
 const helmet = require("helmet");
 
 const authRouter = require("../auth/auth-router.js");
-const guidesRouters = require("../routers/guides/guides-router.js");
+const guidesRouter = require("../routers/guides/guides-router.js");
+const touristsRouter = require("../routers/tourists/tourists-router.js");
 
 const server = express();
 
@@ -14,7 +15,8 @@ server.use(express.json());
 server.use("/api/auth", authRouter);
 
 // No Login required
-server.use("/api/auth", guidesRouters);
+server.use("/api/auth", guidesRouter);
+server.use("/api/auth", touristsRouter);
 
 server.get("/", (req, res) => {
   res.send({ message: "It's alive!" });
