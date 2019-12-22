@@ -38,7 +38,7 @@ router.put("/:id", authenticate, (req, res) => {
           res.json(updated)
         );
       } else {
-        res.status(404).json({ message: "Trip doesnt exist" });
+        res.status(404).json({ message: "Trip doesn't exist" });
       }
     })
     .catch(err => res.status(500).json({ error: err }));

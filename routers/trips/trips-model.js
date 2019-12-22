@@ -6,8 +6,8 @@ module.exports = {
   findById,
   update,
   remove,
-  getTripsByGuideId
-  // addTripsByGuideId
+  getTripsByGuideId,
+  addTripsByGuideId
 };
 
 function find() {
