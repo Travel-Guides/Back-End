@@ -5,9 +5,9 @@ module.exports = {
   find,
   findById,
   update,
-  remove
-  // getTripsByGuideId
-  // addTripsByGuideId
+  remove,
+  getTripsByGuideId,
+  addTripsByGuideId
 };
 
 function find() {
@@ -39,31 +39,31 @@ function remove(id) {
     .delete();
 }
 
-// function getTripsByGuideId(guide_id) {
-//   return db("trips as t")
-//     .select(
-//       "t.id",
-//       "t.tourName",
-//       "t.description",
-//       "t.price",
-//       "t.duration",
-//       "t.location",
-//       "t.language",
-//       "t.kidFriendly",
-//       "t.audioGuide",
-//       "t.accessibility",
-//       "t.walking",
-//       "t.guided",
-//       "t.petFriendly"
-//     )
-//     .join("guides", "guides.id", "t.guide_id")
-//     .where("t.guide_id", guide_id);
-// }
+function getTripsByGuideId(guide_id) {
+  return db("trips as t")
+    .select(
+      "t.id",
+      "t.tourName",
+      "t.description",
+      "t.price",
+      "t.duration",
+      "t.location",
+      "t.language",
+      "t.kidFriendly",
+      "t.audioGuide",
+      "t.accessibility",
+      "t.walking",
+      "t.guided",
+      "t.petFriendly"
+    )
+    .join("guides", "guides.id", "t.guide_id")
+    .where("t.guide_id", guide_id);
+}
 
-// function addTripsByGuideId(guide_id) {
-//   return db("trips as t")
-//     .insert(guide_id, "id")
-//     .join("guides", "guides.id", "t.guide_id")
-//     .where("t.guide_id", guide_id)
-//     .then(ids => ({ id: ids[0] }));
-// }
+function addTripsByGuideId(guide_id) {
+  return db("trips as t")
+    .insert(guide_id, "id")
+    .join("guides", "guides.id", "t.guide_id")
+    .where("t.guide_id", guide_id)
+    .then(ids => ({ id: ids[0] }));
+}
