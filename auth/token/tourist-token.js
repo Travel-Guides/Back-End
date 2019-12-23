@@ -7,7 +7,7 @@ function generateTouristToken(user) {
     type: "tourist"
   };
 
-  const secret = process.env.JWT_SECRET || "is it secret, is it safe?";
+  const secret = process.env.JWT_SECRET;
 
   const options = { expiresIn: "1d" };
 

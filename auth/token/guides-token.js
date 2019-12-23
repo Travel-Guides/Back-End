@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 function generateGuidesToken(user) {
   const payload = {
@@ -7,7 +8,7 @@ function generateGuidesToken(user) {
     type: "guide"
   };
 
-  const secret = process.env.JWT_SECRET || "is it secret, is it safe?";
+  const secret = process.env.JWT_SECRET;
 
   const options = { expiresIn: "1d" };
 
