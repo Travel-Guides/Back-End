@@ -12,7 +12,7 @@ router.get("/", authenticate, (req, res) => {
     .catch(err => res.status(500).json({ error: err }));
 });
 
-router.get("/:id", authenticate, (req, res) => {
+router.get("/:id", (req, res) => {
   Trips.findById(req.params.id)
     .then(trip => {
       if (trip) {
@@ -24,7 +24,7 @@ router.get("/:id", authenticate, (req, res) => {
     .catch(err => res.status(500).json({ error: err }));
 });
 
-router.post("/", (req, res) => {
+router.post("/", authenticate, (req, res) => {
   Trips.add(req.body)
     .then(trips => res.status(200).json(trips))
     .catch(err => res.status(500).json({ error: err }));
