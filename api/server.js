@@ -14,11 +14,11 @@ server.use(cors());
 server.use(express.json());
 
 server.use("/api/auth", authRouter);
-server.use("/api/trips", tripsRouter);
 
 // No Login required
 server.use("/api/auth", guidesRouter);
 server.use("/api/auth", touristsRouter);
+server.use("/api/trips", tripsRouter);
 
 server.get("/", (req, res) => {
   res.send({ message: "It's alive!" });
