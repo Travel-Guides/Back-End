@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 function generateTouristToken(user) {
   const payload = {
     subject: user.id,
-    username: user.username,
+    email: user.email,
     type: "tourist"
   };
 

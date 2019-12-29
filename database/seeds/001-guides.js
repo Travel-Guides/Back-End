@@ -12,7 +12,7 @@ exports.seed = function(knex) {
           firstName: "Guide 1",
           lastName: "Smith",
           email: "guide1@gmail.com",
-          username: "Smith123",
+          // username: "Smith123",
           password: bcrypt.hashSync("smithguide", 10)
         },
         {
@@ -20,7 +20,7 @@ exports.seed = function(knex) {
           firstName: "Guide 2",
           lastName: "Doe",
           email: "guide2@gmail.com",
-          username: "Doe123",
+          // username: "Doe123",
           password: bcrypt.hashSync("guidedoe", 10)
         },
         {
@@ -28,7 +28,7 @@ exports.seed = function(knex) {
           firstName: "Guide 3",
           lastName: "Johnson",
           email: "guide3@gmail.com",
-          username: "Johnson123",
+          // username: "Johnson123",
           password: bcrypt.hashSync("guidejohnson", 10)
         }
       ]);

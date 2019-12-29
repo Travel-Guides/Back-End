@@ -5,8 +5,8 @@ module.exports = {
 function validateUser(user) {
   let errors = [];
 
-  if (!user.username || user.username.length < 4) {
-    errors.push("Please include a username with at least 4 characters");
+  if (!user.email || user.email.length < 4) {
+    errors.push("Please include a valid email");
   }
 
   if (!user.password || user.password.length < 6) {

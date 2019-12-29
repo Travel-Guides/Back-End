@@ -42,16 +42,16 @@ router.post("/guides/register", (req, res) => {
 });
 
 router.post("/guides/login", (req, res) => {
-  let { username, password } = req.body;
+  let { email, password } = req.body;
 
-  Guides.findBy({ username })
+  Guides.findBy({ email })
     .first()
     .then(guide => {
       if (guide && bcrypt.compareSync(password, guide.password)) {
-        const token = guidesToken(guide.username);
+        const token = guidesToken(guide.email);
 
         res.status(200).json({
-          subject: `Hello ${guide.username}, here's a token.`,
+          subject: `Hello ${guide.email}, here's a token.`,
           token
         });
       } else {
@@ -92,16 +92,16 @@ router.post("/tourists/register", (req, res) => {
 });
 
 router.post("/tourists/login", (req, res) => {
-  let { username, password } = req.body;
+  let { email, password } = req.body;
 
-  Tourists.findBy({ username })
+  Tourists.findBy({ email })
     .first()
     .then(tourist => {
       if (tourist && bcrypt.compareSync(password, tourist.password)) {
-        const token = touristToken(tourist.username);
+        const token = touristToken(tourist.email);
 
         res.status(200).json({
-          subject: `Hello ${tourist.username}, here's a token.`,
+          subject: `Hello ${tourist.email}, here's a token.`,
           token
         });
       } else {
