@@ -4,7 +4,7 @@ require("dotenv").config();
 function generateGuidesToken(user) {
   const payload = {
     subject: user.id,
-    username: user.username,
+    email: user.email,
     type: "guide"
   };
 
