@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-function generateGuidesToken(user) {
+function generateGuidesToken(guide) {
   const payload = {
-    subject: user.id,
-    email: user.email,
+    subject: guide.id,
+    email: guide.email,
     type: "guide"
   };
 
