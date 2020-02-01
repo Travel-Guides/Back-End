@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 module.exports = (req, res, next) => {
   const token = req.headers.authorization;
@@ -13,6 +14,8 @@ module.exports = (req, res, next) => {
         if (decodedToken.type === "guide") {
           req.decodedJwt = decodedToken;
           next();
+        } else if (decodedToken.type === "tourist") {
+          req.decodedJwt = decodedToken;
         } else {
           res.status(400).json({ message: "Wrong user type" });
         }

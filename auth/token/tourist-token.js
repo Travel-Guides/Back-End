@@ -1,9 +1,10 @@
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
-function generateTouristToken(user) {
+function generateTouristToken(tourist) {
   const payload = {
-    subject: user.id,
-    email: user.email,
+    subject: tourist.id,
+    email: tourist.email,
     type: "tourist"
   };
 
